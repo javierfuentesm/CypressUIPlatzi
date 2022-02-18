@@ -26,18 +26,18 @@ describe('Probando configuracion', () => {
 	})
 
 	it('Usando parent', () => {
-		// Obten el elemento Padre
+		// Obtener el elemento Padre
 		cy.get('input[placeholder="First Name"]').parent()
-		//Obetner los elementos Padres en general
+		//Obtener los elementos Padres en general
 		cy.get('input[placeholder="First Name"]').parents()
-		// Obten el elemento Padre y el elemento Hijo
+		// Obtener el elemento Padre y el elemento Hijo
 		cy.get('input[placeholder="First Name"]').parents().find('label')
 
 		// Obteniendo el elemento padre y el elemento hijo limitando el padre
 		cy.get('input[placeholder="First Name"]').parents('form').find('label')
 
 		cy.get('form').find('label')
-		//uso incorrrecto de find
+		//uso incorrecto de find
 
 		cy.find('label')
 	})
