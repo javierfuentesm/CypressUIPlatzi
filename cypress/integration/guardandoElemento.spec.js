@@ -21,7 +21,7 @@ describe('Guardando elementos', () => {
 				const divs = form.find('div')
 				const labels = form.find('label')
 
-				//Las asersiones se explicaran a detalle en la proxima clase
+				//Las aserciones se explicaran a detalle en la proxima clase
 				expect(inputs.length).to.eq(15)
 				expect(divs.length).to.eq(70)
 				expect(labels.length).to.eq(16)
