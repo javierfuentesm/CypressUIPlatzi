@@ -17,6 +17,14 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+	// `on` is used to hook into various events Cypress emits
+	// `config` is the resolved Cypress config
+
+	on('task', {
+		log(message) {
+			// este log se muestra en la terminal del servidor que sirve para modo headless
+			console.log(`Soy el console log del task ${message}`)
+			return null
+		},
+	})
 }
