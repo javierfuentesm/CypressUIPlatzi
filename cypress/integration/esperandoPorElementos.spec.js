@@ -17,7 +17,7 @@ describe('Esperando por elementos', () => {
 		cy.get('.ButtonLogin-cta', { timeout: 6000 })
 	})
 
-	it('Espera por un elemento y hacer una asersion', () => {
+	it('Espera por un elemento y hacer una asercion', () => {
 		//a pesar de que el tiempo es el mismo , es un timeout silo encuentra antes seguirá avanzando no esperara lso 5 segundos siempre
 		// esto  modifica el timeout the todas los comandos  incluyendo el should
 		cy.get('.ButtonLogin-cta', { timeout: 5000 }).should('be.visible')

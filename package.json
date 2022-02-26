@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:ui": "cypress open",
+    "test:headless": "cypress run",
+    "test:headless:chrome": "cypress run --browser chrome",
+    "comentatrio de firefox(no es un script)": " hay un bug abierto ya que en firefox no graba video https://github.com/cypress-io/cypress/issues/18415",
+    "test:headless:firefox": "cypress run --browser firefox --spec cypress/integration/navegacion.spec.js"
   },
   "keywords": [],
   "author": "",

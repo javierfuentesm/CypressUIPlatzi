@@ -1,4 +1,4 @@
-describe('Probando configuracion', () => {
+describe('Tipos de localizadores', () => {
 	it('Obteniendo por un tag', () => {
 		cy.visit('/automation-practice-form')
 		cy.get('input')
