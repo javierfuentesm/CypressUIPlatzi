@@ -1,4 +1,7 @@
 describe('Interactuando con los elementos', () => {
+	// para el ejemplo de extraer el texto de un elemento
+	let texto
+
 	it('Click', () => {
 		cy.visit('/buttons')
 		cy.get('button').eq(3).click()
@@ -68,7 +71,7 @@ describe('Interactuando con los elementos', () => {
 		cy.get('#firstName').type('Otro nombre{enter}')
 	})
 
-	it.only('Checkboxes y radio botnones ', () => {
+	it('Checkboxes y radio botnones ', () => {
 		cy.visit('/automation-practice-form')
 		// a veces fallara porque lo cubre otro elemento
 		// cy.get('#gender-radio-1').click()
@@ -82,5 +85,31 @@ describe('Interactuando con los elementos', () => {
 		// cy.get('#hobbies-checkbox-1').click({ force: true })
 		// Acercamiento recomendado
 		cy.get("label[for='hobbies-checkbox-1']").click()
+	})
+	//Es importante tener el function y no solo un arrow function ay que las arrow function carecen de contexto y por ende del this
+	it('Extrayendo informacion', function () {
+		cy.visit('/automation-practice-form')
+		// a veces fallara porque lo cubre otro elemento
+
+		cy.get('#firstName').as('nombre')
+		cy.get('@nombre').type('Javier')
+		// Primera manera de hacerlo
+		cy.get('@nombre').then(($nombre) => {
+			texto = $nombre.val()
+			expect(texto).to.equal('Javier')
+		})
+
+		// Segunda manera de hacerlo, invoke solo invoca una funcion que en este caso el elemento que nos regresa el get , como jquery tiene
+		cy.get('@nombre').invoke('val').should('equal', 'Javier')
+		cy.get('@nombre').invoke('val').as('nombreGlobal')
+	})
+
+	//Es importante tener el function y no solo un arrow function ya que las arrow function carecen de contexto y por ende del this
+	it('pasando informacion entre its', function () {
+		// Con la variable global
+		cy.get('#lastName').type(texto)
+
+		//CCon el alias
+		cy.get('#lastName').type(this.nombreGlobal)
 	})
 })
