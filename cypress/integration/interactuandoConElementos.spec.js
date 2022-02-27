@@ -116,4 +116,38 @@ describe('Interactuando con los elementos', () => {
 		//CCon el alias
 		cy.get('#lastName').type(this.nombreGlobal)
 	})
+
+	it('Interactuando con dropdowns(select)', () => {
+		// Con la variable global
+		cy.visit('https://itera-qa.azurewebsites.net/home/automation')
+
+		//Seleccionar por index
+		cy.get('.custom-select').select(10)
+
+		//Seleccionar por valor
+		cy.get('.custom-select').select('3').should('have.value', '3')
+
+		//Seleccionar por texto
+		cy.get('.custom-select').select('Greece').should('have.value', '4')
+	})
+	it.only('Interactuando con dropdowns(select) dinamico', () => {
+		// Con la variable global
+		cy.visit('https://react-select.com/home')
+
+		//Seleccionar por index
+		cy.get('#react-select-6-input').type(' ')
+
+		//Iterando por cada uno de los elementos
+		cy.get('#react-select-6-listbox')
+			.children()
+			.children()
+			.each(($el, index, $list) => {
+				if ($el.text() === 'Red') {
+					$el.on('click')
+				}
+			})
+
+		//Oh si conoces el id del elemento
+		cy.get('#react-select-6-option-3').click()
+	})
 })
