@@ -152,7 +152,7 @@ describe('Interactuando con los elementos', () => {
 		cy.get('#react-select-6-option-3').click()
 	})
 
-	it.only('Interactuando con tablas', () => {
+	it('Interactuando con tablas', () => {
 		// Obteniendo los headers de la tabla
 		cy.visit('https://www.w3schools.com/html/html_tables.asp')
 		cy.get('#customers')
@@ -200,5 +200,15 @@ describe('Interactuando con los elementos', () => {
 				expect(texto).to.equal('Maria Anders')
 				cy.wrap($el).should('contain', 'Maria Anders')
 			})
+	})
+
+	it.only('Interactuando con data picker', () => {
+		cy.visit('https://material.angular.io/components/datepicker/overview')
+		cy.get('datepicker-overview-example')
+			.find('input')
+			.eq(0)
+			.type('12/02/2005{enter}')
+
+		cy.get('datepicker-overview-example').find('svg').click()
 	})
 })
