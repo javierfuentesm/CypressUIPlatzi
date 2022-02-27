@@ -53,7 +53,7 @@ describe('Interactuando con los elementos', () => {
 		})
 	})
 
-	it.only('Inputs type text', () => {
+	it('Inputs type text', () => {
 		cy.visit('/automation-practice-form')
 		cy.get('#firstName').type('Javier')
 		cy.get('#lastName').type('Fuentes')
@@ -66,5 +66,21 @@ describe('Interactuando con los elementos', () => {
 		cy.get('#firstName').clear()
 		//Mocernos al otro input
 		cy.get('#firstName').type('Otro nombre{enter}')
+	})
+
+	it.only('Checkboxes y radio botnones ', () => {
+		cy.visit('/automation-practice-form')
+		// a veces fallara porque lo cubre otro elemento
+		// cy.get('#gender-radio-1').click()
+		// se puede hacer asi pero no es recomendado porque no esta cumpliendo el comportamiento que tuviera el usuario
+		// cy.get('#gender-radio-1').click({ force: true })
+		// Acercamiento recomendado
+		cy.get("label[for='gender-radio-1']").click()
+
+		// Checkbox , lo mismo si usamos el input directo
+		// cy.get('#hobbies-checkbox-1').click()
+		// cy.get('#hobbies-checkbox-1').click({ force: true })
+		// Acercamiento recomendado
+		cy.get("label[for='hobbies-checkbox-1']").click()
 	})
 })
