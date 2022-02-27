@@ -198,6 +198,7 @@ describe('Interactuando con los elementos', () => {
 			.then(($el) => {
 				const texto = $el.text()
 				expect(texto).to.equal('Maria Anders')
+				cy.wrap($el).should('contain', 'Maria Anders')
 			})
 	})
 })
