@@ -130,7 +130,8 @@ describe('Interactuando con los elementos', () => {
 		//Seleccionar por texto
 		cy.get('.custom-select').select('Greece').should('have.value', '4')
 	})
-	it.only('Interactuando con dropdowns(select) dinamico', () => {
+
+	it('Interactuando con dropdowns(select) dinamico', () => {
 		// Con la variable global
 		cy.visit('https://react-select.com/home')
 
@@ -149,5 +150,54 @@ describe('Interactuando con los elementos', () => {
 
 		//Oh si conoces el id del elemento
 		cy.get('#react-select-6-option-3').click()
+	})
+
+	it.only('Interactuando con tablas', () => {
+		// Obteniendo los headers de la tabla
+		cy.visit('https://www.w3schools.com/html/html_tables.asp')
+		cy.get('#customers')
+			.find('th')
+			.each(($el, index, $list) => {
+				cy.log($el.text())
+			})
+
+		cy.get('#customers')
+			.find('th')
+			.first()
+			.invoke('text')
+			.should('equal', 'Company')
+
+		cy.get('#customers')
+			.find('th')
+			.eq(1)
+			.invoke('text')
+			.should('equal', 'Contact')
+
+		cy.get('#customers')
+			.find('th')
+			.eq(2)
+			.invoke('text')
+			.should('equal', 'Country')
+
+		// Validamos el numero de filas
+		cy.get('#customers').find('tr').should('have.length', 7)
+
+		cy.get('#customers')
+			.find('tr')
+			.eq(1)
+			.find('td')
+			.eq(1)
+			.invoke('text')
+			.should('equal', 'Maria Anders')
+
+		cy.get('#customers')
+			.find('tr')
+			.eq(1)
+			.find('td')
+			.eq(1)
+			.then(($el) => {
+				const texto = $el.text()
+				expect(texto).to.equal('Maria Anders')
+			})
 	})
 })
