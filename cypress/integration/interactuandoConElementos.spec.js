@@ -77,14 +77,18 @@ describe('Interactuando con los elementos', () => {
 		// cy.get('#gender-radio-1').click()
 		// se puede hacer asi pero no es recomendado porque no esta cumpliendo el comportamiento que tuviera el usuario
 		// cy.get('#gender-radio-1').click({ force: true })
-		// Acercamiento recomendado
+		// cy.get('#gender-radio-1').check({ force: true })
+		// Acercamiento recomendado si usamos el label
 		cy.get("label[for='gender-radio-1']").click()
 
 		// Checkbox , lo mismo si usamos el input directo
-		// cy.get('#hobbies-checkbox-1').click()
+		// cy.get('#hobbies-checkbox-1').check({ force: true })
+		// cy.get('#hobbies-checkbox-1').uncheck({ force: true })
 		// cy.get('#hobbies-checkbox-1').click({ force: true })
-		// Acercamiento recomendado
+		// Acercamiento recomendado con label
 		cy.get("label[for='hobbies-checkbox-1']").click()
+		// desmarcar
+		// cy.get("label[for='hobbies-checkbox-1']").click()
 	})
 	//Es importante tener el function y no solo un arrow function ay que las arrow function carecen de contexto y por ende del this
 	it('Extrayendo informacion', function () {
