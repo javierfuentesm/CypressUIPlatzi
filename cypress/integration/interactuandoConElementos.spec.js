@@ -212,7 +212,7 @@ describe('Interactuando con los elementos', () => {
         cy.get('datepicker-overview-example').find('svg').click()
     })
 
-    it.only('Interactuando con modals', () => {
+    it('Interactuando con modals', () => {
         cy.visit('/modal-dialogs')
         cy.get('#showSmallModal').click()
         cy.get('#closeSmallModal').click()
@@ -255,6 +255,14 @@ describe('Interactuando con los elementos', () => {
         cy.get('#toolTipButton').trigger('mouseout')
         cy.contains('You hovered over the Button').should('not.exist')
 
+    })
+
+    it.only('Interactuando con drag and drops', () => {
+        cy.visit('/dragabble')
+        cy.get('#dragBox')
+            .trigger('mousedown', {which: 1, pageX: 600, pageY: 100})
+            .trigger('mousemove', {which: 1, pageX: 600, pageY: 600})
+            .trigger('mouseup')
     })
 
 
